@@ -9,31 +9,16 @@ class App extends React.Component {
 
   state = {
     ceps:
-      [
-        {
-          cep: '04094-050',
-          logradouro: 'Avenida Pedro Álvares Cabral',
-          bairro: 'Parque Ibirapuera',
-          localidade: 'São Paulo',
-          uf: 'SP'
-        },
-        {
-          cep: '55592-970',
-          logradouro: 'Rua dos Navegantes',
-          bairro: 'Vila de Porto de Galinhas',
-          localidade: 'Ipojuca',
-          uf: 'PE'
-        }
-      ]
+      []
   }
-
 
   onBuscaRealizada = (cep) => {
     viacepClient.get('/' + cep + '/json/').then(
       (results) => results.data.erro ?
         alert('O CEP inserido não foi encontrado!')
         :
-        console.log(results))
+        this.setState({ ceps: [results.data, ...this.state.ceps] }
+        ))
   }
 
   render() {

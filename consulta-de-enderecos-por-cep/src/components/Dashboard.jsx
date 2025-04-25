@@ -11,7 +11,7 @@ const Dashboard = ({ ceps, contador }) => {
     }
 
     const ufsPresentes = contaUFs(ceps)
-    const percentuais = Object.values(ufsPresentes).map(valor => (valor / contador * 100).toFixed(2))
+    const percentuais = Object.values(ufsPresentes).map(valor => (parseFloat((valor / contador * 100).toFixed(2))))
 
     const opcoes = {
         plugins: {

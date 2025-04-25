@@ -17,10 +17,7 @@ const Dashboard = ({ ceps, contador }) => {
         plugins: {
             tooltip: {
                 callbacks: {
-                    label: (valor) => {
-                        const value = valor === undefined ? 0 : valor.parsed
-                        return `${value}%`
-                    }
+                    label: (valor) => `${valor.parsed}%`
                 }
             }
         }

@@ -24,7 +24,7 @@ export default class Busca extends Component {
             <form onSubmit={this.onFormSubmit}>
                 <InputText
                     onChange={this.onCEPAlterado}
-                    className='w-full'
+                    className='w-full text-center'
                     keyfilter='pint'
                     placeholder={this.props.tip}
                     value={this.state.cepDeBusca} />

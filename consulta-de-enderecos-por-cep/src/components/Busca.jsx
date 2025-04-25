@@ -7,15 +7,17 @@ export default class Busca extends Component {
         cepDeBusca: ''
     }
     
-
     onCEPAlterado = (evento) => {
         this.setState({ cepDeBusca: evento.target.value })
     }
 
     onFormSubmit = (evento) => {
         evento.preventDefault()
-        this.props.onBuscaRealizada(this.state.cepDeBusca)
-    }
+        this.state.cepDeBusca.length != 8 ? 
+            alert('A quantidade de algarismos inseridos é diferente do padrão para CEP!') 
+            : 
+            this.props.onBuscaRealizada(this.state.cepDeBusca)}
+    
 
     render() {
         return (
@@ -25,14 +27,13 @@ export default class Busca extends Component {
                     <InputText
                         onChange={this.onCEPAlterado}
                         className='w-full'
+                        keyfilter='pint'
                         placeholder={this.props.tip}
                         value={this.state.cepDeBusca} />
                     <Button
-                        onClick={() => alert(this.state.cepDeBusca)}
                         className='mt-2 w-full'
                         label='OK'
-                         />
-                        
+                         />                        
                 </div>
             </form>
         )

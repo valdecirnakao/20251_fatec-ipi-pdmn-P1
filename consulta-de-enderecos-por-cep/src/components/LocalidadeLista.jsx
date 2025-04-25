@@ -8,8 +8,7 @@ const LocalidadeLista = ({ ceps }) => {
                 {ceps.cep}<br />
                 {ceps.logradouro} <br />
                 {ceps.bairro} <br />
-                {ceps.localidade} <br />
-                {ceps.uf} <br />
+                {ceps.localidade} - {ceps.uf} <br />
             </Card>
         ))
     )

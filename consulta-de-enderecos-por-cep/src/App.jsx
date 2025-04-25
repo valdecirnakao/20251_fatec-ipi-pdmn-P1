@@ -1,8 +1,11 @@
 import React from 'react'
 import Busca from './components/Busca.jsx'
 import LocalidadeLista from './components/LocalidadeLista.jsx'
+import viacepClient from './utils/viacepClient.js'
 
 class App extends React.Component {
+
+  viacepClient = null
 
   state = {
     ceps:
@@ -26,7 +29,11 @@ class App extends React.Component {
 
 
   onBuscaRealizada = (cep) => {
-    console.log('Realizar a busca com o CEP ' + cep)
+    viacepClient.get('/' + cep + '/json/').then(
+      (results) => results.data.erro ?
+        alert('O CEP inserido não foi encontrado!')
+        :
+        console.log(results))
   }
 
   render() {
@@ -41,8 +48,6 @@ class App extends React.Component {
           <LocalidadeLista
             ceps={this.state.ceps} />
         </div>
-
-
       </div>
     )
   }

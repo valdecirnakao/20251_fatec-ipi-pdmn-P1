@@ -19,28 +19,20 @@ export default class Busca extends Component {
             this.props.onBuscaRealizada(this.state.cepDeBusca)
     }
 
-
     render() {
         return (
             <form onSubmit={this.onFormSubmit}>
-                <div
-                    className='flex flex-column'>
-                    <InputText
-                        onChange={this.onCEPAlterado}
-                        className='w-full'
-                        keyfilter='pint'
-                        placeholder={this.props.tip}
-                        value={this.state.cepDeBusca} />
-                    <Button
-                        className='mt-2 w-full'
-                        label='OK'
-                    />
-                </div>
+                <InputText
+                    onChange={this.onCEPAlterado}
+                    className='w-full'
+                    keyfilter='pint'
+                    placeholder={this.props.tip}
+                    value={this.state.cepDeBusca} />
+                <Button
+                    className='w-full mt-2'
+                    label='OK' />
             </form>
         )
     }
 }
-
-Busca.defaultProps = {
-    tip: 'Insira o CEP a ser pesquisado'
-}
+Busca.defaultProps = { tip: 'Insira o CEP a ser pesquisado' }

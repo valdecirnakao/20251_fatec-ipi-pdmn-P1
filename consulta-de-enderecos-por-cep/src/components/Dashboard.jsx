@@ -1,18 +1,30 @@
-import React from 'react'
 import { Chart } from 'primereact/chart'
 
-const Dashboard = ({ ceps }) => {
+const Dashboard = ({ ceps, contador }) => {
 
     const contaUFs = (listaDeCeps) => {
         const contagem = {}
-        listaDeCeps.forEach((cep) => {
-            const uf = cep.uf;
-            contagem[uf] = (contagem[uf] || 0) + 1;
-        })
+        listaDeCeps.map(cep => {
+            const uf = cep.uf
+            contagem[uf] = contagem[uf] === undefined ? 1 : contagem[uf] + 1 })
         return contagem
     }
 
     const ufsPresentes = contaUFs(ceps)
+    const percentuais = Object.values(ufsPresentes).map(valor => (valor / contador * 100).toFixed(2))
+
+    const opcoes = {
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    label: (valor) => {
+                        const value = valor === undefined ? 0 : valor.parsed
+                        return `${value}%`
+                    }
+                }
+            }
+        }
+    }
 
     return (
         <div>
@@ -20,7 +32,8 @@ const Dashboard = ({ ceps }) => {
                 labels: Object.keys(ufsPresentes),
                 datasets: [
                     {
-                        data: Object.values(ufsPresentes),
+                        data: percentuais,
+                        
                         backgroundColor:
                             [
                                 '#FF6384',
@@ -84,7 +97,7 @@ const Dashboard = ({ ceps }) => {
                     }
                 ]
             }}
-            />
+            options={opcoes}/>
         </div>
     )
 }
